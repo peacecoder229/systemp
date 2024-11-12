@@ -1,0 +1,50 @@
+From f8ed25759ac1f6240f42597a88301973d23ba7f4 Mon Sep 17 00:00:00 2001
+From: Arthur Mitrano <arthur.araujo.mitrano@intel.com>
+Date: Wed, 3 Jul 2024 09:41:29 -0700
+Subject: [PATCH 1/2] x64: matmul: add envvars for blocking parameters
+
+M_BLK, N_BLK, K_BLK: Control the size of m, n and k dimensions BRGEMM.
+
+BATCH_SZ: Controls the amount of K_BLK that will be processed by BRGEMM
+kernel.  In essence, it is count for a loop around the innermost loop in
+BRGEMM kernel (k-dim).
+
+M_CHUNK_SZ, N_CHUNK_SZ: Control the amount of blocks in m/n-dim at
+matmul driver. They control how many iterations for the 2 innermost
+loops before calling BRGEMM.
+---
+ src/cpu/x64/matmul/brgemm_matmul_utils.cpp | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+diff --git a/src/cpu/x64/matmul/brgemm_matmul_utils.cpp b/src/cpu/x64/matmul/brgemm_matmul_utils.cpp
+index 95e518ae12..9d4b99f74a 100644
+--- a/src/cpu/x64/matmul/brgemm_matmul_utils.cpp
++++ b/src/cpu/x64/matmul/brgemm_matmul_utils.cpp
+@@ -1534,6 +1534,24 @@ status_t init_brgemm_matmul_conf(cpu_isa_t isa, brgemm_matmul_conf_t &bgmmc,
+     VCHECK_BG(compute_blocking_heuristic(bgmmc, bm_conf_utils),
+             VERBOSE_BLOCKING_FAIL, "");
+ 
++    // Hard code BRGEMM kernel block sizes. That is, BRGEMM calls will use
++    // M_BLK, N_BLK and K_BLK as the calling sizes.
++    bgmmc.M_blk = getenv_int("M_BLK", bgmmc.M_blk);
++    bgmmc.N_blk = getenv_int("N_BLK", bgmmc.N_blk);
++    bgmmc.K_blk = getenv_int("K_BLK", bgmmc.K_blk);
++
++    // Hard code the amount of blocks in m/n-dimension. Currently execution of
++    // BRGEMM kernel happens inside m/n-loops where M_CHUNK_SZ and N_CHUNK_SZ
++    // are the amount of blocks to loop over.
++    bgmmc.M_chunk_size = getenv_int("M_CHUNK_SZ", bgmmc.M_chunk_size);
++    bgmmc.N_chunk_size = getenv_int("N_CHUNK_SZ", bgmmc.N_chunk_size);
++
++    // Hard code the BRGEMM batch size. That is, BRGEMM batch is an additional
++    // loop inside BRGEMM kernel around k-loop  Therefore, you can think a
++    // BRGEMM(BATCH_SZ, M_BLK, N_BLK, K_BLK) as a
++    // GEMM(M_BLK, N_BLK, K_BLK * BATCH_SZ).
++    bgmmc.brgemm_batch_size = getenv_int("BATCH_SZ", bgmmc.brgemm_batch_size);
++
+     if (bgmmc.wei_n_blk > bgmmc.N_blk
+             && IMPLICATION(
+                     bgmmc.N == bgmmc.N_blk, bgmmc.N >= bgmmc.wei_n_blk)) {
+-- 
+2.25.0
+

@@ -1,0 +1,249 @@
+
+Ram-cache and Swap Cleared
+Ram-cache and Swap Cleared
+7662,114688
+Ram-cache and Swap Cleared
+Environment string: 'ONEDNN_VERBOSE=1 MATMUL_VERBOSE=1 M_CHUNK_SZ=1 N_CHUNK_SZ=1 BATCH_SZ=10 M_BLK=512 N_BLK=512 K_BLK=512'
+ONEDNN_VERBOSE=1 MATMUL_VERBOSE=1 M_CHUNK_SZ=1 N_CHUNK_SZ=1 BATCH_SZ=10 M_BLK=512 N_BLK=512 K_BLK=512 numactl -C 0-31 ./matmul_sereilbf16 --src_row 7662 --src_col 7662 --weight_row 7662 --weight_col 7662 --batch_size 10 --ompthreads 32 --layer 100 --cachedata 0 & ONEDNN_VERBOSE=1 MATMUL_VERBOSE=1 M_CHUNK_SZ=1 N_CHUNK_SZ=1 BATCH_SZ=10 M_BLK=512 N_BLK=512 K_BLK=512 numactl -C 64-95 ./matmul_sereilbf16 --src_row 7662 --src_col 7662 --weight_row 7662 --weight_col 7662 --batch_size 10 --ompthreads 32 --layer 100 --cachedata 0
+tmc -T all -x rdas -i "NA" -Z flex -e /opt/intel/sep/config/edp/filtered_memcpularge_mem.txt -D "2Sreduced_3360000.0kB_NoAMXfalse" -n -u -c "ONEDNN_VERBOSE=1 MATMUL_VERBOSE=1 M_CHUNK_SZ=1 N_CHUNK_SZ=1 BATCH_SZ=10 M_BLK=512 N_BLK=512 K_BLK=512 numactl -C 0-31 ./matmul_sereilbf16 --src_row 7662 --src_col 7662 --weight_row 7662 --weight_col 7662 --batch_size 10 --ompthreads 32 --layer 100 --cachedata 0 & ONEDNN_VERBOSE=1 MATMUL_VERBOSE=1 M_CHUNK_SZ=1 N_CHUNK_SZ=1 BATCH_SZ=10 M_BLK=512 N_BLK=512 K_BLK=512 numactl -C 64-95 ./matmul_sereilbf16 --src_row 7662 --src_col 7662 --weight_row 7662 --weight_col 7662 --batch_size 10 --ompthreads 32 --layer 100 --cachedata 0"
+m_chunk_sz =    4, m_blk =   64, m_tail =   46, 
+n_chunk_sz =    1, n_blk =   64, n_tail =   46, 
+batch_size =  239, k_blk =   32, k_tail =   14, nthr_k =  1
+bgmmc: M =   7662, M_blk =  512, M_tail =  494, M_chunks =   15, M_chunk_elems =  512, num_M_blocks =   15, M_chunk_size =    1
+bgmmc: N =   7662, N_blk =  512, N_tail =  494, N_chunks =   15, N_chunk_elems =  512, num_N_blocks =   15, N_chunk_size =    1
+bgmmc: K =   7662, K_blk =  512, K_tail =  494, K_chunks =    2, K_chunk_elems = 5120
+bgmmc: LDA = 7662, LDB =   64, LDC =  512, LDD = 7662
+bgmmc: wei_n_blk =   64, wei_k_blk =   32
+bgmmc: use_buffer: A = 0, B = 1, C = 1, A_tail = 0
+onednn_verbose,info,oneDNN v3.6.0 (commit 402461d88d93f5a7b069d65a284423b10387f64a)
+onednn_verbose,info,cpu,runtime:OpenMP,nthr:32
+onednn_verbose,info,cpu,isa:Intel AVX-512 with float16, Intel DL Boost and bfloat16 support and Intel AMX with bfloat16 and 8-bit integer support
+onednn_verbose,info,gpu,runtime:none
+onednn_verbose,info,graph,backend,0:dnnl_backend
+onednn_verbose,primitive,info,template:operation,engine,primitive,implementation,prop_kind,memory_descriptors,attributes,auxiliary,problem_desc,exec_time
+onednn_verbose,graph,info,template:operation,engine,partition_id,partition_kind,op_names,data_formats,logical_tensors,fpmath_mode,backend,exec_time
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,24.009
+m_chunk_sz =    4, m_blk =   64, m_tail =   46, 
+n_chunk_sz =    1, n_blk =   64, n_tail =   46, 
+batch_size =  239, k_blk =   32, k_tail =   14, nthr_k =  1
+bgmmc: M =   7662, M_blk =  512, M_tail =  494, M_chunks =   15, M_chunk_elems =  512, num_M_blocks =   15, M_chunk_size =    1
+bgmmc: N =   7662, N_blk =  512, N_tail =  494, N_chunks =   15, N_chunk_elems =  512, num_N_blocks =   15, N_chunk_size =    1
+bgmmc: K =   7662, K_blk =  512, K_tail =  494, K_chunks =    2, K_chunk_elems = 5120
+bgmmc: LDA = 7662, LDB =   64, LDC =  512, LDD = 7662
+bgmmc: wei_n_blk =   64, wei_k_blk =   32
+bgmmc: use_buffer: A = 0, B = 1, C = 1, A_tail = 0
+onednn_verbose,info,oneDNN v3.6.0 (commit 402461d88d93f5a7b069d65a284423b10387f64a)
+onednn_verbose,info,cpu,runtime:OpenMP,nthr:32
+onednn_verbose,info,cpu,isa:Intel AVX-512 with float16, Intel DL Boost and bfloat16 support and Intel AMX with bfloat16 and 8-bit integer support
+onednn_verbose,info,gpu,runtime:none
+onednn_verbose,info,graph,backend,0:dnnl_backend
+onednn_verbose,primitive,info,template:operation,engine,primitive,implementation,prop_kind,memory_descriptors,attributes,auxiliary,problem_desc,exec_time
+onednn_verbose,graph,info,template:operation,engine,partition_id,partition_kind,op_names,data_formats,logical_tensors,fpmath_mode,backend,exec_time
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,22.103
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,14.281
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,14.427
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,13.043
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,12.7839
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,12.165
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,12.5352
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.915
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.9651
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.5051
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.3899
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.9111
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9199
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.3201
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.364
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.436
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.1221
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.27
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.021
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.6169
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.1899
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,12.0449
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,12.0361
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.969
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,12.1179
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.6321
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.5811
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.051
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.2461
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.5481
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.2561
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.134
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.2561
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.342
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.405
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.374
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.4729
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.6431
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.2852
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.198
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9509
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0881
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.8271
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.792
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.1099
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.3269
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.04
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7588
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.8708
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.771
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.8938
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.853
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9329
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.719
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.937
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.832
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0481
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7068
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0642
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,12.093
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.4729
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,12.2729
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.6489
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.3298
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.123
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.407
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.209
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9631
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9648
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.084
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.1111
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7161
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.875
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9399
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0139
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.8149
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0029
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.6621
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7971
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7778
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0681
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.8191
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.3899
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7078
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7852
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7422
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.2712
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.6489
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.8621
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.6191
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9822
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0981
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.1218
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.8301
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7681
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.054
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.1169
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.134
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,12.7878
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.978
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.7449
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.1309
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.5691
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.094
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.478
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.6868
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.749
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.353
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.72
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.1511
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.96
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.2458
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.6909
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.158
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7349
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.178
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.677
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.908
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.8301
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.1428
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.6331
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.98
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7341
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.8142
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.792
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.8889
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.866
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,18.626
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7322
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.001
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9951
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.936
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0369
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9441
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.002
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.9561
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,12.312
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.9512
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.436
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.4089
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0249
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.811
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.897
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.2571
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0278
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.238
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.1179
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.178
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.769
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9651
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.792
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.103
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.802
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.23
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0129
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9082
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.6189
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.772
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.968
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.8091
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.126
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7109
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7151
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.6699
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0959
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.6831
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.946
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.8621
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0249
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.728
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.114
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7661
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0652
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,13.0288
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,13.231
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.3921
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.238
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0242
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9622
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.084
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.2632
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9961
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9341
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7759
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.939
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.77
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9529
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.4622
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9519
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.7209
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.908
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.958
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.918
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.8669
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.9819
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,11.0759
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.856
+matmultime=11.3655seconds.
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.688
+onednn_verbose,primitive,exec,cpu,matmul,brg_matmul:avx10_1_512_amx,undef,src_bf16::blocked:abc::f0 wei_bf16::blocked:abc::f0 dst_bf16::blocked:abc::f0,,,10x7662x7662:10x7662x7662,10.927
+matmultime=11.6442seconds.
+
+Elapsed time: 11.3655 seconds
+All matches ['11.3655', '11.6442']
+threads,skew,src_mem_kb,total_mem_mb,execution_times0,execution_times1,cacheinput
+
+512,32,1,114688,3360.0,11.3655,0
+

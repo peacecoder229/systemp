@@ -1,0 +1,53 @@
+  387  python run_matmul.py 
+  390  python run_matmul.py 
+  416  python run_matmul.py 
+  425  python run_matmul.py 
+  483  python run_matmul_emon.py 
+  650  python create-csv_newcolumns.py 
+  782  conda create -n llm python=3.10
+  817  OMP_NUM_THREADS=36 numactl -C 0-35 python run_generation.py --device cpu --insid 0 --benchmark -m EleutherAI/gpt-j-6B --dtype bfloat16 --num-iter 3 --batch-size 1 --input-tokens 48 --max_new_tokens 1 --printmodel
+  819  OMP_NUM_THREADS=36 numactl -C 0-35 python run_generation.py --device cpu --insid 0 --benchmark -m EleutherAI/gpt-j-6B --dtype bfloat16 --num-iter 3 --batch-size 1 --input-tokens 48 --max_new_tokens 1 --printmodel
+  828  OMP_NUM_THREADS=2 numactl -C 0-1 python run_generation.py --device cpu --insid 0 --benchmark -m EleutherAI/gpt-j-6B --dtype bfloat16 --num-iter 3 --batch-size 1 --input-tokens 16 --max_new_tokens 1 --ipex --jit
+  830  OMP_NUM_THREADS=2 numactl -C 0-1 python run_generation.py --device cpu --insid 0 --benchmark -m EleutherAI/gpt-j-6B --dtype bfloat16 --num-iter 3 --batch-size 1 --input-tokens 16 --max_new_tokens 1 --ipex --jit
+  831  OMP_NUM_THREADS=8 numactl -C 0-7 python run_generation.py --device cpu --insid 0 --benchmark -m EleutherAI/gpt-j-6B --dtype bfloat16 --num-iter 3 --batch-size 1 --input-tokens 128 --max_new_tokens 1 --ipex --jit
+  832  OMP_NUM_THREADS=8 numactl -C 0-7 python run_generation.py --device cpu --insid 0 --benchmark -m EleutherAI/gpt-j-6B --dtype bfloat16 --num-iter 6 --batch-size 1 --input-tokens 128 --max_new_tokens 1 --ipex --jit
+  833  OMP_NUM_THREADS=8 numactl -C 0-7 python run_generation.py --device cpu --insid 0 --benchmark -m EleutherAI/gpt-j-6B --dtype bfloat16 --num-iter 6 --batch-size 1 --input-tokens 128 --max_new_tokens 1 --ipex --jit | grep Iteration
+  860  python -c "import transformers; print(transformers.__version__)"
+  862  python -c "import torch; print(torch.__version__)"
+  872  OMP_NUM_THREADS=36 numactl -C 0-35 python run_generation.py --device cpu --insid 0 --benchmark -m EleutherAI/gpt-j-6B --dtype bfloat16 --num-iter 3 --batch-size 1 --input-tokens 48 --max_new_tokens 1 --ipex --jit
+  943  conda create -n llm-cpuv2p2 python=3.10 -y
+  978  OMP_NUM_THREADS=56 numactl -m 0 -C 0-55 python run.py --benchmark -m EleutherAI/gpt-j-6B --dtype bfloat16 --ipex
+  981  OMP_NUM_THREADS=56 numactl -m 0 -C 0-55 python run.py --benchmark -m EleutherAI/gpt-j-6B --dtype bfloat16 --ipex --num-iter 3
+  982  OMP_NUM_THREADS=56 numactl -m 0 -C 0-55 python run.py --benchmark -m mistralai/Mixtral-8x7B-v0.1 --dtype bfloat16 --ipex --num-iter 3
+  985  OMP_NUM_THREADS=56 numactl -m 0 -C 0-55 python run.py --benchmark -m mistralai/Mixtral-8x7B-v0.1 --dtype bfloat16 --ipex --num-iter 3
+  987  python -c "import transformers; print(transformers.__version__)"
+  988  python -c "import torch; import intel_extension_for_pytorch as ipex; print(torch.__version__); print(ipex.__version__);"
+ 1010  python run_matmul_emon.py 
+ 1012  python run_matmul_emon.py 
+ 1014  python run_matmul_emon.py 
+ 1016  python run_matmul_emon.py 
+ 1018  python run_matmul_emon.py 
+ 1020  python run_matmul_emon.py 
+ 1022  python run_matmul_emon.py 
+ 1024  python run_matmul_emon.py 
+ 1027  python run_matmul_emon.py 
+ 1275  python run_matmul_emon_sys_blkexp.py --dnnverbose --matmulverbose
+ 1277  python run_matmul_emon_sys_blkexp.py --dnnverbose --matmulverbose
+ 1282  python run_matmul_emon_sys_blkexp.py --dnnverbose --matmulverbose
+ 1291  python run_matmul_emon_sys_blkexp.py --dnnverbose --matmulverbose
+ 1326  python run_matmul_emon_sys_blkexp.py 
+ 1328  python run_matmul_emon_sys_blkexp.py 
+ 1330  python run_matmul_emon_sys_blkexp.py 
+ 1335  python run_matmul_emon_sys_blkexp.py --dnnverbose --matmulverbose
+ 1337  python run_matmul_emon_sys_blkexp.py
+ 1339  python run_matmul_emon_sys_blkexp.py
+ 1341  python run_matmul_emon_sys_blkexp.py
+ 1343  python run_matmul_emon_sys_blkexp.py
+ 1344  python run_matmul_emon_sys_blkexp.py 
+ 1346  python run_matmul_emon_sys_blkexp.py 
+ 1348  python run_matmul_emon_sys_blkexp.py 
+ 1370  python run_matmul_emon_sys_blkexp.py --dnnverbose --matmulverbose
+ 1374  python run_matmul_emon_sys_blkexp.py --dnnverbose --matmulverbose
+ 1380  history | grep "numa | python" 
+ 1381  history | grep -E  "numa | python" 
+ 1382  history | grep -E  "numa | python"  > cmdlines

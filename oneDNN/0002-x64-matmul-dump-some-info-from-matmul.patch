@@ -1,0 +1,127 @@
+From bc251f80f9428a887b607602d72a690a80dd75cc Mon Sep 17 00:00:00 2001
+From: Arthur Mitrano <arthur.araujo.mitrano@intel.com>
+Date: Tue, 26 Dec 2023 09:40:34 -0800
+Subject: [PATCH 2/2] x64: matmul: dump some info from matmul
+
+Use MATMUL_VERBOSE=1 to see the dump. This can be used to check if
+blocking was indeed overridden by other envvars that control blocking.
+---
+ src/cpu/x64/matmul/brgemm_matmul_utils.cpp | 36 ++++++++++++++++++++++
+ src/cpu/x64/matmul/brgemm_matmul_utils.hpp | 19 ++++++++++++
+ 2 files changed, 55 insertions(+)
+
+diff --git a/src/cpu/x64/matmul/brgemm_matmul_utils.cpp b/src/cpu/x64/matmul/brgemm_matmul_utils.cpp
+index 9d4b99f74a..f1ff9f262a 100644
+--- a/src/cpu/x64/matmul/brgemm_matmul_utils.cpp
++++ b/src/cpu/x64/matmul/brgemm_matmul_utils.cpp
+@@ -510,6 +510,24 @@ struct matmul_amx_blocking_params_t : public brgemm_matmul_conf_t {
+ 
+     static size_t L2_threshold();
+ 
++    void dump() {
++        static bool matmul_verbose = getenv_int("MATMUL_VERBOSE", false);
++        if (!matmul_verbose) return;
++
++        dim_t m_tail = M % m_blk_;
++        dim_t n_tail = N % n_blk_;
++        dim_t k_tail = K % k_blk_;
++        dim_t batch_size = brgemm_batch_size;
++
++        printf(
++                "m_chunk_sz = %4ld, m_blk = %4ld, m_tail = %4ld, " "\n"
++                "n_chunk_sz = %4ld, n_blk = %4ld, n_tail = %4ld, " "\n"
++                "batch_size = %4ld, k_blk = %4ld, k_tail = %4ld, nthr_k = %2d\n",
++                m_chunk_size_, m_blk_, m_tail,
++                n_chunk_size_, n_blk_, n_tail,
++                batch_size, k_blk_, k_tail, nthr_k_);
++    }
++
+ private:
+     // num threads for parallelism wrt k dimension
+     int nthr_k_;
+@@ -582,6 +600,19 @@ struct matmul_avx512_blocking_params_t {
+     int nthr_k;
+     const int nthr;
+ 
++    void dump() {
++        static bool matmul_verbose = getenv_int("MATMUL_VERBOSE", false);
++        if (!matmul_verbose) return;
++
++        printf(
++                "m_chunk_sz = %4d, m_blk = %4d, m_tail = %4d, " "\n"
++                "n_chunk_sz = %4d, n_blk = %4d, n_tail = %4d, " "\n"
++                "batch_size = %4d, k_blk = %4d, k_tail = %4d, nthr_k = %2d\n",
++                m_chunks, m_blk, m_tail,
++                n_chunks, n_blk, n_tail,
++                batch_size, k_blk, k_tail, nthr_k);
++    }
++
+     void update_params(int m_chunks_, int m_blk_, int n_chunks_, int n_blk_,
+             int batch_size_, int k_blk_, int nthr_k_) {
+         m_chunks = m_chunks_;
+@@ -1127,6 +1158,7 @@ status_t compute_blocking_heuristic(brgemm_matmul_conf_t &bgmmc,
+         VCONDCHECK_BG(best_blocking.get_blocking_scores() != 0.0f,
+                 VERBOSE_BLOCKING_FAIL, "");
+ 
++        best_blocking.dump();
+         best_blocking.update_configuration(bgmmc);
+ 
+     } else if (is_superset(bm_conf_utils.get_isa(), avx512_core)) {
+@@ -1177,6 +1209,7 @@ status_t compute_blocking_heuristic(brgemm_matmul_conf_t &bgmmc,
+ 
+         VCONDCHECK_BG(best_imbalance != 1.f, VERBOSE_BLOCKING_FAIL, "")
+ 
++        best_blocking.dump();
+         best_blocking.update_configuration(bgmmc);
+     } else {
+         VCONDCHECK_BG(is_superset(bm_conf_utils.get_isa(), avx2),
+@@ -1196,6 +1229,7 @@ status_t compute_blocking_heuristic(brgemm_matmul_conf_t &bgmmc,
+ 
+         VCONDCHECK_BG(best_imbalance != 1.f, VERBOSE_BLOCKING_FAIL, "")
+ 
++        best_blocking.dump();
+         best_blocking.update_configuration(bgmmc);
+     }
+ 
+@@ -1616,6 +1650,8 @@ status_t init_brgemm_matmul_conf(cpu_isa_t isa, brgemm_matmul_conf_t &bgmmc,
+     is_small_shapes = is_small_shapes && !bgmmc.packed_sparse_weights;
+     VCONDCHECK_BG(!is_small_shapes, VERBOSE_SMALL_SHAPES);
+ 
++    bgmmc.dump();
++
+     return status::success;
+ }
+ 
+diff --git a/src/cpu/x64/matmul/brgemm_matmul_utils.hpp b/src/cpu/x64/matmul/brgemm_matmul_utils.hpp
+index babfa0395b..6c97acca53 100644
+--- a/src/cpu/x64/matmul/brgemm_matmul_utils.hpp
++++ b/src/cpu/x64/matmul/brgemm_matmul_utils.hpp
+@@ -202,6 +202,25 @@ struct brgemm_matmul_conf_t {
+         const dim_t big_K_threshold = big_stride_threshold_in_bytes / a_dt_sz;
+         return !transposed_A && math::is_pow2(K) && K >= big_K_threshold;
+     }
++
++    void dump() const {
++        static bool matmul_verbose = getenv_int("MATMUL_VERBOSE", false);
++        if (!matmul_verbose) return;
++
++        printf("bgmmc: " "M = %6ld, M_blk = %4ld, M_tail = %4ld, M_chunks = %4d, M_chunk_elems = %4ld, num_M_blocks = %4d, M_chunk_size = %4d\n"
++               "bgmmc: " "N = %6ld, N_blk = %4ld, N_tail = %4ld, N_chunks = %4d, N_chunk_elems = %4ld, num_N_blocks = %4d, N_chunk_size = %4d\n"
++               "bgmmc: " "K = %6ld, K_blk = %4ld, K_tail = %4ld, K_chunks = %4d, K_chunk_elems = %4ld\n"
++               "bgmmc: " "LDA = %4ld, LDB = %4ld, LDC = %4ld, LDD = %4ld\n"
++               "bgmmc: " "wei_n_blk = %4d, wei_k_blk = %4d\n"
++               "bgmmc: " "use_buffer: A = %d, B = %d, C = %d, A_tail = %d\n",
++               M, M_blk, M_tail, M_chunks, M_chunk_elems, num_M_blocks, M_chunk_size,
++               N, N_blk, N_tail, N_chunks, N_chunk_elems, num_N_blocks, N_chunk_size,
++               K, K_blk, K_tail, K_chunks, K_chunk_elems,
++               LDA, LDB, LDC, LDD,
++               wei_n_blk, wei_k_blk,
++               use_buffer_a, use_buffer_b, use_buffer_c, use_buffer_a_tail_only
++               );
++    }
+ };
+ 
+ struct brgemm_matmul_conf_utils_t {
+-- 
+2.25.0
+
